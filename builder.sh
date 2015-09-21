@@ -292,6 +292,7 @@ mount_fdescfs_and_proc () {
 initialize_devices () {
   echo "Initializing devices..."
   service devd start
+  service syscons start
   echo "Initializing devices..."
 }
 

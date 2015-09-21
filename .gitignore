@@ -3,11 +3,16 @@
 # Reference:
 # http://stackoverflow.com/questions/7527982/applying-gitignore-to-committed-files
 # http://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
+
+# vim
+*.swp
+
+# sensitive data
 secure_variables.sh
 
 # kernel configurations files
 *_KERNEL
 
-# vim
-*.swp
+# user specific files
+operator_patch/*
 
