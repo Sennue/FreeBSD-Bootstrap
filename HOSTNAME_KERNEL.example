@@ -31,3 +31,12 @@ options         ALTQ_PRIQ       # Priority Queuing (PRIQ)
 options         VESA # Vesa Support for Splash
 options         SC_PIXEL_MODE # add support for the raster tex
 
+# Disable Optional Virtualbox Devices
+#nodevice        sc                      # disable syscons
+#nooptions       SC_PIXEL_MODE           # disable with syscons (raster text mode support)
+#nodevice        vt                      # disable vt
+#nodevice        vt_vga                  # disable with vt
+#nodevice        vt_efifb                # disable with vt
+#nodevice        em                      # disable VM default network driver
+#nodevice        vtnet                   # disable paravirtualized network driver
+
