@@ -4,6 +4,7 @@
 # cd /usr/src/sys/amd64/conf/
 # ln -s /root/install-freebsd/$KERNEL_CONFIG
 
+#include VIRTUALBOX
 include GENERIC
 ident MY_HOSTNAME
 

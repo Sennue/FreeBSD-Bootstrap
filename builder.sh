@@ -172,7 +172,7 @@ bootstrap_freebsd_src () {
 
 bootstrap_kernel_config () {
   echo "Bootstrapping kernel configuration..."
-  (cd $FREEBSD_SRC_DIR/sys/amd64/conf/; rm -f $KERNEL_CONFIG; ln -s $TOP_DIR/$KERNEL_CONFIG)
+  (cd $FREEBSD_SRC_DIR/sys/amd64/conf/; rm -f $KERNEL_CONFIG; ln -s $TOP_DIR/$KERNEL_CONFIG; ln -s $TOP_DIR/VIRTUALBOX)
   echo "Bootstrapping kernel configuration... Done."
 }
 
