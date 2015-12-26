@@ -61,6 +61,9 @@ main () {
       clear)
         clear
         ;;
+      ip)
+        echo $(ifconfig $EXT_IF | grep 'inet ' | cut '-d ' -f2)
+        ;;
       -v=*|--value=*)
         VALUE="${i#*=}"
         ;;

@@ -5,6 +5,9 @@
 # List of ports to install with portmaster.  Used after a failure.
 PORTS_TO_INSTALL=
 
+# Network Interface
+EXT_IF=em0
+
 # kernel configuration to use
 HOSTNAME=hostname
 KERNEL_CONFIG=HOSTNAME_KERNEL
