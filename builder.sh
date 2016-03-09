@@ -113,6 +113,7 @@ install () {
 }
 
 postinstall () {
+  adjust_clock
   rebuild_all_ports
   delete_obsolete_libraries
 }
@@ -145,8 +146,9 @@ bootstrap_ports () {
   echo "Boostrapping ports..."
   # Bootstrap Ports
   rm -rf $PORTS_SRC_DIR
-  $SVN co $PORTS_SRC_SERVER/$PORTS_SRC_PROJECT $PORTS_SRC_DIR
-  $SVN up $PORTS_SRC_DIR
+  #$SVN co $PORTS_SRC_SERVER/$PORTS_SRC_PROJECT $PORTS_SRC_DIR
+  #$SVN up $PORTS_SRC_DIR
+  portsnap fetch extract
   cd $PORTS_SRC_DIR/ports-mgmt/portmaster && make config-recursive && make config-recursive && make install clean
   portmaster $PORTMASTER_FLAGS ports-mgmt/portupgrade
   #portmaster $PORTMASTER_FLAGS devel/subversion
@@ -203,6 +205,7 @@ bootstrap_rc () {
 }
 
 update_all () {
+  adjust_clock
   update_freebsd_source
   update_doc_source
   update_ports
@@ -222,7 +225,8 @@ update_doc_source () {
 
 update_ports () {
   echo 'Updating ports...'
-  $SVN up $PORTS_SRC_DIR
+  #$SVN up $PORTS_SRC_DIR
+  portsnap fetch update
   portmaster --no-confirm -m BATCH=yes -aD
   #portmaster --no-confirm -m BATCH=yes -m DISABLE_VULNERABILITIES=yes -aD
   portsclean -CD
@@ -231,7 +235,8 @@ update_ports () {
 
 rebuild_all_ports () {
   echo 'Rebuilding ports...'
-  $SVN up $PORTS_SRC_DIR
+  #$SVN up $PORTS_SRC_DIR
+  portsnap fetch update
   portmaster --no-confirm -m BATCH=yes -afD
   portsclean -CD
   echo 'Rebuilding ports... Done.'
@@ -239,7 +244,8 @@ rebuild_all_ports () {
 
 resume_portmaster () {
   echo 'Resuming portmaster...'
-  $SVN up $PORTS_SRC_DIR
+  #$SVN up $PORTS_SRC_DIR
+  portsnap fetch update
   #portmaster --no-confirm -m BATCH=yes -m DISABLE_VULNERABILITIES=yes -D $PORTS_TO_INSTALL
   portmaster --no-confirm -m BATCH=yes -D $PORTS_TO_INSTALL 
   # update outdated ports
@@ -345,6 +351,7 @@ build_freebsd_world () {
 build_freebsd_kernel () {
   echo 'Building FreeBSD kernel...'
   (cd $FREEBSD_SRC_DIR; make buildkernel KERNCONF=$KERNEL_CONFIG)
+  (cd $FREEBSD_SRC_DIR; make -C sys/boot install)
   echo 'Building FreeBSD kernel... Done.'
 }
 
