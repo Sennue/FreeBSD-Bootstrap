@@ -25,6 +25,9 @@ main () {
       quick|quick_install)
         quick_install
         ;;
+      kernel|kernel_install)
+        kernel_install
+        ;;
       update|update_ports)
         update_all
         ;;
@@ -138,6 +141,17 @@ quick_install () {
   build_freebsd_kernel
   install_freebsd_kernel
   install_freebsd_world
+  delete_obsolete_files
+  delete_obsolete_libraries
+}
+
+kernel_install () {
+  adjust_clock
+  update_freebsd_source
+  clean_build_environment
+  backup_freebsd_kernel
+  build_freebsd_kernel
+  install_freebsd_kernel
   delete_obsolete_files
   delete_obsolete_libraries
 }

@@ -16,3 +16,6 @@ secure_variables.sh
 # user specific files
 operator_patch/*
 
+# core files
+*.core
+
